@@ -1,15 +1,53 @@
 // smoke test, test if the component can render without crashing
 import React from 'react';
-import ReactDOM from 'react-dom';
 import StoreLocator from '../StoreLocator';
 import { shallow } from 'enzyme';
-import Button from '../../components/Button';
+import axios from 'axios';
 
 describe('StoreLocator tests', () => {
   let mountedStoreLocator;
 
   beforeEach(() => {
     mountedStoreLocator = shallow(<StoreLocator />);
+  });
+
+  it('calls axios.get in #componentDidMount', () => {
+    return mountedStoreLocator
+      .instance()
+      .componentDidMount()
+      .then(() => {
+        expect(axios.get).toHaveBeenCalled();
+      });
+  });
+
+  it('calls axios.get with correct url', () => {
+    return mountedStoreLocator
+      .instance()
+      .componentDidMount()
+      .then(() => {
+        expect(axios.get).toHaveBeenCalledWith('http://localhost:3000/data/stores.json');
+      });
+  });
+
+  it('updates state with api data', () => {
+    return mountedStoreLocator
+      .instance()
+      .componentDidMount()
+      .then(() => {
+        expect(mountedStoreLocator.state()).toHaveProperty('stores', [
+          { location: 'test location', address: 'test address' }
+        ]);
+      });
+  });
+
+  it('renders 1 button after calling api', () => {
+    return mountedStoreLocator
+      .instance()
+      .componentDidMount()
+      .then(() => {
+        const buttons = mountedStoreLocator.find('Button');
+        expect(buttons.length).toBe(1);
+      });
   });
 
   it('renders without crashing', () => {
@@ -21,13 +59,22 @@ describe('StoreLocator tests', () => {
     let mountedStoreLocator = shallow(<StoreLocator />);
   });
 
-  it('renders 2 buttons', () => {
-    const buttons = mountedStoreLocator.find('Button');
-    expect(buttons.length).toBe(3);
-  });
+  // it('renders 3 buttons', () => {
+  //   const buttons = mountedStoreLocator.find('Button');
+  //   expect(buttons.length).toBe(3);
+  // });
 
   it('renders 1 map', () => {
     const map = mountedStoreLocator.find('Map');
     expect(map.length).toBe(1);
+  });
+});
+
+describe('chooseMap', () => {
+  it('updates this.state.currentMap using the location passed to it', () => {
+    let mountedStoreLocator = shallow(<StoreLocator />);
+    let mockEvent = { target: { value: 'testland' } };
+    mountedStoreLocator.instance().chooseMap(mockEvent);
+    expect(mountedStoreLocator.instance().state.currentMap).toBe('testland.png');
   });
 });

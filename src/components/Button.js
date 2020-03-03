@@ -4,7 +4,11 @@ import './Button.css';
 class Button extends Component {
   render() {
     return (
-      <button className="LocationButton">
+      <button
+        className="LocationButton"
+        onClick={this.props.handleClick}
+        value={this.props.location}
+      >
         {this.props.location ? this.props.location : 'All Locations'}
       </button>
     );

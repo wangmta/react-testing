@@ -12,7 +12,7 @@ describe('mapChooser', () => {
     expect(actual).toEqual(expected);
   });
   it('returns a default file name when no input is given', () => {
-    let expected = 'default.png';
+    let expected = 'none.png';
     let actual = mapChooser('');
     expect(actual).toEqual(expected);
   });

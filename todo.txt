@@ -1,4 +1,8 @@
-there should eb a button fot each store location
+
+
+completed
+
+there should be a button fot each store location
 
 each store button should display the name of the location
 
@@ -9,4 +13,3 @@ a map chooser function returns an image file name based on the input given to in
 when no input is given to the map choose function, it should return a default image file name
 
 when bad input it given to the map chooser function, it should returns a default image file name
-
