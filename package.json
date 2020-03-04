@@ -15,8 +15,11 @@
     "coverage": "npm run test -- --coverage"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.4.1",
     "axios": "^0.19.2",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2"
+    "enzyme-adapter-react-16": "^1.15.2",
+    "react-test-renderer": "^16.13.0"
   }
 }
