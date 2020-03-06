@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
-import './App.css';
-import Button from './components/button/Button';
+import React, { Fragment } from 'react';
 
-class App extends Component {
-  render() {
-    return (
+function App() {
+  return (
+    <Fragment>
       <div className="App">
-        <header className="AppHeader">
-          <Button label="i'm the button label." />
-        </header>
+        <h1>This is React App Guide.</h1>
       </div>
-    );
-  }
+      <div className="AppOther">
+        <h1>This is React AppOther Guide.</h1>
+      </div>
+    </Fragment>
+  );
 }
 
 export default App;
