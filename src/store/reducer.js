@@ -1,16 +1,12 @@
-import * as constants from './constants';
+import { combineReducers } from 'redux';
 
-const defaultState = {
-  myData: null
-};
+import { reducer as loginReducer } from '../pages/login/store';
+import { reducer as headerReducer } from '../components/Header/store';
 
-export default (state = defaultState, action) => {
-  let newState = Object.assign({}, state);
-  switch (action.type) {
-    case constants.SET_DATA:
-      newState.myData = action.data;
-      return newState;
-    default:
-      return state;
-  }
-};
+// combine all component level stores
+const reducer = combineReducers({
+  login: loginReducer,
+  header: headerReducer
+});
+
+export default reducer;
