@@ -27,6 +27,10 @@ class Login extends React.Component {
   goToHome() {
     this.props.history.push('/home');
   }
+
+  componentDidMount() {
+    // this.props.getDataAsyncNative();
+  }
 }
 
 // map store data to component props
@@ -42,6 +46,12 @@ const mapDispatchToProps = dispatch => ({
     const action = actionCreators.getData(data);
     dispatch(action);
   }
+  // throw Error: Actions must be plain objects. Use custom middleware for async actions.
+  // need a custom middleware
+  // getDataAsyncNative() {
+  //   const action = actionCreators.getDataAsyncNative();
+  //   dispatch(action);
+  // }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

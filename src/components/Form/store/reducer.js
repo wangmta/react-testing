@@ -15,6 +15,9 @@ export default (state = defaultState, action) => {
   switch (action.type) {
     case constants.ADD_ARTICLE:
       return addArticle(state, action);
+    case constants.FOUND_BAD_WORD:
+      alert(`${action.data} not allowed`);
+      return state;
     default:
       return state;
   }

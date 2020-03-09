@@ -19,7 +19,8 @@ import { fromJS } from 'immutable';
 
 // use immutable.js
 const defaultState = fromJS({
-  myData: 'original myData value'
+  myData: 'original myData value',
+  remoteArticles: []
 });
 
 const getData = (state, action) => {

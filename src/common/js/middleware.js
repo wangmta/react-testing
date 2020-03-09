@@ -10,7 +10,7 @@ export function forbiddenWordsMiddleware({ getState, dispatch }) {
         const foundWord = forbiddenWords.filter(word => action.data.title.includes(word));
 
         if (foundWord.length) {
-          return dispatch({ type: constants.FOUND_BAD_WORD });
+          return dispatch({ type: constants.FOUND_BAD_WORD, data: action.data.title });
         }
       }
       return next(action);
