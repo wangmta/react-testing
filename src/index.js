@@ -6,6 +6,8 @@ import './common/style/frame.scss';
 import { Provider } from 'react-redux';
 import store from './store';
 
+import './mock';
+
 const Apps = (
   <Provider store={store}>
     <App />

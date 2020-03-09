@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import reducer from './reducer';
+import RootReducer from './reducer';
 import thunk from 'redux-thunk';
 
 // test if browser has Redux DevTools support
@@ -10,6 +10,6 @@ const composeEnhancers =
 
 const enhancer = composeEnhancers(applyMiddleware(thunk));
 
-const store = createStore(reducer, enhancer);
+const store = createStore(RootReducer, enhancer);
 
 export default store;
