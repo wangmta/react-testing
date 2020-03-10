@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 
 import Form from '../../components/Form/Form';
 import List from '../../components/List/List';
+import Post from '../../components/Post/Post';
 
 class Home extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class Home extends React.Component {
         <List />
         <h2>Add a new article here</h2>
         <Form />
+        <Post></Post>
       </div>
     );
   }

@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import { actionCreators } from './store';
 
 class ConnectedPost extends React.Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    this.props.getDataAsyncThunk('loading data after OK is clicked');
   }
-
-  componentDidMount() {}
 
   render() {
     return (
@@ -21,13 +19,13 @@ class ConnectedPost extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { articles: state.getIn() };
+  return { articles: state.getIn(['post', 'remoteArticles']).slice(0, 20) };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getDataAsyncThunk() {
-      dispatch(actionCreators.getDataAsyncThunk());
+    getDataAsyncThunk(data) {
+      dispatch(actionCreators.getDataAsyncThunk(data));
     }
   };
 };
