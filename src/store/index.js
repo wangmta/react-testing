@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import RootReducer from './reducer';
-import thunk from 'redux-thunk';
 import { forbiddenWordsMiddleware } from '../common/js/middleware';
+import createSagaMiddleware from 'redux-saga';
+import apiSage from '../common/js/saga/api-saga';
 
 // test if browser has Redux DevTools support
 const composeEnhancers =
@@ -9,8 +10,12 @@ const composeEnhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
-const enhancer = composeEnhancers(applyMiddleware(thunk, forbiddenWordsMiddleware));
+const initSagaMiddleware = createSagaMiddleware();
+
+const enhancer = composeEnhancers(applyMiddleware(forbiddenWordsMiddleware, initSagaMiddleware));
 
 const store = createStore(RootReducer, enhancer);
+
+initSagaMiddleware.run(apiSage);
 
 export default store;

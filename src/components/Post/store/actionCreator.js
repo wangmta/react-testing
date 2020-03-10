@@ -18,6 +18,7 @@ export const getDataAsyncThunk = data => {
   };
 };
 
+// saga way
 export const getDataAsyncSaga = () => {
   return { type: constants.DATA_REQUESTED };
 };

@@ -4,7 +4,7 @@ import { actionCreators } from './store';
 
 class ConnectedPost extends React.Component {
   componentDidMount() {
-    this.props.getDataAsyncThunk('loading data after OK is clicked');
+    this.props.getDataAsyncSaga();
   }
 
   render() {
@@ -18,17 +18,26 @@ class ConnectedPost extends React.Component {
   }
 }
 
+// mount state to this.props
 const mapStateToProps = state => {
   return { articles: state.getIn(['post', 'remoteArticles']).slice(0, 20) };
 };
 
+// mount dispatch func to this.props
 const mapDispatchToProps = dispatch => {
   return {
-    getDataAsyncThunk(data) {
-      dispatch(actionCreators.getDataAsyncThunk(data));
+    getDataAsyncSaga() {
+      dispatch(actionCreators.getDataAsyncSaga());
     }
   };
 };
 
 const Post = connect(mapStateToProps, mapDispatchToProps)(ConnectedPost);
+
+// shorthand
+// const Post = connect(mapStateToProps, {
+//   getDataAsyncSaga: () => {
+//     return actionCreators.getDataAsyncSaga();
+//   }
+// })(ConnectedPost);
 export default Post;
