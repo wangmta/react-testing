@@ -19,6 +19,8 @@ export const getDataAsyncThunk = data => {
 };
 
 // saga way
+// returns plain object as action
+// redux-saga relies heavily on generator functions but the good thing is that you won't need to call next() in your code. redux-saga handles that for you under the hood.
 export const getDataAsyncSaga = () => {
   return { type: constants.DATA_REQUESTED };
 };
